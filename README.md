@@ -14,7 +14,7 @@ muma is licensed under public domain or MIT, whichever you prefer. More informat
 # General information
 
 ## Thread safety
-muma is fully thread safe, as it doesn't define or access any globally defined variables.
+muma is doesn't define or access any globally defined variables, but has no built-in system for locking a dynamic array with mutexes.
 
 ## Error checking
 Most functions in muma take in a result pointer, `mumaResult* result`, as their first parameter. This is used to indicate whether or not the function executed successfully or not. `MU_NULL_PTR` can be passed in to ignore this, but if a valid pointer is passed in, it will dereference it with a `mumaResult` enum value indicating how the function executed.
