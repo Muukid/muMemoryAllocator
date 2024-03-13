@@ -85,6 +85,16 @@ More explicit license information at the end of file.
 
 		#endif
 
+		#if !defined(MU_SIZE_MAX)
+
+			#include <stdint.h>
+
+			#ifndef MU_SIZE_MAX
+				#define MU_SIZE_MAX SIZE_MAX
+			#endif
+
+		#endif
+
 	/* Structs */
 
 		struct muDynamicArray {
@@ -103,7 +113,8 @@ More explicit license information at the end of file.
 			MUMA_INVALID_TYPE_SIZE,
 			MUMA_INVALID_INDEX,
 			MUMA_INVALID_SHIFT_AMOUNT,
-			MUMA_INVALID_COUNT
+			MUMA_INVALID_COUNT,
+			MUMA_NOT_FOUND
 		};
 		typedef enum _mumaResult _mumaResult;
 		#define mumaResult size_m
@@ -112,6 +123,10 @@ More explicit license information at the end of file.
 
 		#ifndef MU_NULL_PTR
 			#define MU_NULL_PTR 0
+		#endif
+
+		#ifndef MU_NONE
+			#define MU_NONE MU_SIZE_MAX
 		#endif
 
 	/* Functions */
@@ -145,6 +160,9 @@ More explicit license information at the end of file.
 
 		MUDEF muDynamicArray mu_dynamic_array_multipop(mumaResult* result, muDynamicArray da, size_m count);
 		MUDEF muDynamicArray mu_dynamic_array_pop(mumaResult* result, muDynamicArray da);
+
+		MUDEF size_m mu_dynamic_array_find(mumaResult* result, muDynamicArray da, void* find);
+		MUDEF size_m mu_dynamic_array_find_push(mumaResult* result, muDynamicArray da, void* find);
 
 	/* Macro functions */
 
@@ -475,6 +493,60 @@ More explicit license information at the end of file.
 
 	MUDEF muDynamicArray mu_dynamic_array_pop(mumaResult* result, muDynamicArray da) {
 		return mu_dynamic_array_multipop(result, da, 1);
+	}
+
+	MUDEF size_m mu_dynamic_array_find(mumaResult* result, muDynamicArray da, void* find) {
+		if (result != MU_NULL_PTR) {
+			*result = MUMA_SUCCESS;
+		}
+
+		char* c = (char*)da.data;
+		char* cf = (char*)find;
+		for (size_m i = 0; i < da.length; i++) {
+			char found = 1;
+			for (size_m j = 0; j < da.type_size; j++) {
+				if (c[(da.type_size*i)+j] != cf[j]) {
+					found = 0;
+					break;
+				}
+			}
+			if (found == 1) {
+				return i;
+			}
+		}
+
+		if (result != MU_NULL_PTR) {
+			*result = MUMA_NOT_FOUND;
+		}
+		return MU_NONE;
+	}
+
+	MUDEF size_m mu_dynamic_array_find_push(mumaResult* result, muDynamicArray da, void* find) {
+		if (result != MU_NULL_PTR) {
+			*result = MUMA_SUCCESS;
+		}
+
+		mumaResult res = MUMA_SUCCESS;
+		size_m index = mu_dynamic_array_find(&res, da, find);
+		if (index != MU_NONE) {
+			return index;
+		}
+		if (res != MUMA_SUCCESS && res != MUMA_NOT_FOUND) {
+			if (result != MU_NULL_PTR) {
+				*result = res;
+			}
+			return MU_NONE;
+		}
+
+		da = mu_dynamic_array_push(&res, da, find);
+		if (res != MUMA_SUCCESS) {
+			if (result != MU_NULL_PTR) {
+				*result = res;
+			}
+			return MU_NONE;
+		}
+
+		return da.length-1;
 	}
 
 	#ifdef __cplusplus
