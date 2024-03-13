@@ -34,7 +34,7 @@ More explicit license information at the end of file.
 		#ifdef __cplusplus
 			#define mu_zero_struct(s) {}
 		#else
-			#define mu_zero_struct(s) {0}
+			#define mu_zero_struct(s) (s){0}
 		#endif
 	#endif
 
@@ -201,7 +201,7 @@ More explicit license information at the end of file.
 			*result = MUMA_SUCCESS;
 		}
 
-		muDynamicArray da = mu_zero_struct(da);
+		muDynamicArray da = mu_zero_struct(muDynamicArray);
 
 		if (type_size <= 0) {
 			if (result != MU_NULL_PTR) {
