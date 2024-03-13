@@ -162,7 +162,7 @@ More explicit license information at the end of file.
 		MUDEF muDynamicArray mu_dynamic_array_pop(mumaResult* result, muDynamicArray da);
 
 		MUDEF size_m mu_dynamic_array_find(mumaResult* result, muDynamicArray da, void* find);
-		MUDEF size_m mu_dynamic_array_find_push(mumaResult* result, muDynamicArray da, void* find);
+		MUDEF muDynamicArray mu_dynamic_array_find_push(mumaResult* result, muDynamicArray da, void* find, size_m* p_index);
 
 	/* Macro functions */
 
@@ -521,7 +521,7 @@ More explicit license information at the end of file.
 		return MU_NONE;
 	}
 
-	MUDEF size_m mu_dynamic_array_find_push(mumaResult* result, muDynamicArray da, void* find) {
+	MUDEF muDynamicArray mu_dynamic_array_find_push(mumaResult* result, muDynamicArray da, void* find, size_m* p_index) {
 		if (result != MU_NULL_PTR) {
 			*result = MUMA_SUCCESS;
 		}
@@ -529,24 +529,36 @@ More explicit license information at the end of file.
 		mumaResult res = MUMA_SUCCESS;
 		size_m index = mu_dynamic_array_find(&res, da, find);
 		if (index != MU_NONE) {
-			return index;
+			if (p_index != MU_NULL_PTR) {
+				*p_index = index;
+			}
+			return da;
 		}
 		if (res != MUMA_SUCCESS && res != MUMA_NOT_FOUND) {
+			if (p_index != MU_NULL_PTR) {
+				*p_index = MU_NONE;
+			}
 			if (result != MU_NULL_PTR) {
 				*result = res;
 			}
-			return MU_NONE;
+			return da;
 		}
 
 		da = mu_dynamic_array_push(&res, da, find);
 		if (res != MUMA_SUCCESS) {
+			if (p_index != MU_NULL_PTR) {
+				*p_index = MU_NONE;
+			}
 			if (result != MU_NULL_PTR) {
 				*result = res;
 			}
-			return MU_NONE;
+			return da;
 		}
 
-		return da.length-1;
+		if (p_index != MU_NULL_PTR) {
+			*p_index = da.length-1;
+		}
+		return da;
 	}
 
 	#ifdef __cplusplus
