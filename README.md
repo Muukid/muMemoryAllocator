@@ -135,6 +135,19 @@ MUDEF muDynamicArray mu_dynamic_array_multipop(mumaResult* result, muDynamicArra
 MUDEF muDynamicArray mu_dynamic_array_pop(mumaResult* result, muDynamicArray da);
 ```
 
+## Find
+The functions `mu_dynamic_array_find` and `mu_dynamic_array_find_add` are used to find the first occurance of a given element in a given dynamic array, defined below:
+
+```
+MUDEF size_m mu_dynamic_array_find(mumaResult* result, muDynamicArray da, void* find);
+
+MUDEF size_m mu_dynamic_array_find_add(mumaResult* result, muDynamicArray da, void* find);
+```
+
+`mu_dynamic_array_find` attempts to find an instance of `find` in the given dynamic array `da`. If none could be found, `MU_NONE` will be returned and `result` will be set to `MUMA_NOT_FOUND`.
+
+`mu_dynamic_array_find_add` does the same thing as `mu_dynamic_array_find`, but if it fails to find one, it will attempt to push an instance of `find` on top of the dynamic array and return that one.
+
 # Structs
 
 ## `muDynamicArray`
@@ -164,7 +177,8 @@ enum _mumaResult {
 	MUMA_INVALID_TYPE_SIZE,
 	MUMA_INVALID_INDEX,
 	MUMA_INVALID_SHIFT_AMOUNT,
-	MUMA_INVALID_COUNT
+	MUMA_INVALID_COUNT,
+	MUMA_NOT_FOUND
 };
 typedef enum _mumaResult _mumaResult;
 #define mumaResult size_m
@@ -183,6 +197,9 @@ Defining `MU_STATIC` before including `muMemoryAllocator.h` will set all the def
 
 ## Null pointer
 muma defines `MU_NULL_PTR` as a handle for a null pointer. Really, it's just `0`.
+
+## None
+muma defines `MU_NONE` as a representation for nothing, being equivalent to MU_SIZE_MAX.
 
 ## Short indexing
 Using `mu_dynamic_array_get` and `mu_dynamic_array_set` to get and set values from a dynamic array respectively can be annoying to type. So, the macro function `muda_i` can be used to quickly get an actual index position in a dynamic array, defined below:
@@ -212,6 +229,8 @@ muma relies on several C standard library functions, types, and defines. The lis
 `mu_memset`: equivalent to `memset`, uses `string.h` for definition.
 
 `mu_memcpy`: equivalent to `memcpy`, uses `string.h` for definition.
+
+`MU_SIZE_MAX`: equivalent to `SIZE_MAX`, uses `stdint.h` for definition.
 
 Note that all of these macros can be overwritten by defining them before including `muMemoryAllocator.h`.
 
