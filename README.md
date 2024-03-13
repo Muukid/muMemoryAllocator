@@ -13,6 +13,9 @@ muma is licensed under public domain or MIT, whichever you prefer. More informat
 
 # General information
 
+## C/C++ standard compliancy
+muma is C99 and C++11 compliant.
+
 ## Thread safety
 muma is doesn't define or access any globally defined variables, but has no built-in system for locking a dynamic array with mutexes.
 
