@@ -136,17 +136,17 @@ MUDEF muDynamicArray mu_dynamic_array_pop(mumaResult* result, muDynamicArray da)
 ```
 
 ## Find
-The functions `mu_dynamic_array_find` and `mu_dynamic_array_find_add` are used to find the first occurance of a given element in a given dynamic array, defined below:
+The functions `mu_dynamic_array_find` and `mu_dynamic_array_find_push` are used to find the first occurance of a given element in a given dynamic array, defined below:
 
 ```
 MUDEF size_m mu_dynamic_array_find(mumaResult* result, muDynamicArray da, void* find);
 
-MUDEF size_m mu_dynamic_array_find_add(mumaResult* result, muDynamicArray da, void* find);
+MUDEF muDynamicArray mu_dynamic_array_find_push(mumaResult* result, muDynamicArray da, void* find, size_m* p_index);
 ```
 
 `mu_dynamic_array_find` attempts to find an instance of `find` in the given dynamic array `da`. If none could be found, `MU_NONE` will be returned and `result` will be set to `MUMA_NOT_FOUND`.
 
-`mu_dynamic_array_find_add` does the same thing as `mu_dynamic_array_find`, but if it fails to find one, it will attempt to push an instance of `find` on top of the dynamic array and return that one.
+`mu_dynamic_array_find_push` does the same thing as `mu_dynamic_array_find` (except it returns the array by dereferencing the pointer `p_index`), but if it fails to find one, it will attempt to push an instance of `find` on top of the dynamic array and return that one.
 
 # Structs
 
