@@ -356,7 +356,7 @@ More explicit license information at the end of file.
 
 		if (old_length < da.length) {
 			char* c = (char*)da.data;
-			mu_memset(&c[da.type_size*(old_length)], 0, da.type_size*((da.allocated_length-old_length)+1));
+			mu_memset(&c[da.type_size*old_length], 0, da.type_size*((da.allocated_length-old_length)));
 		}
 
 		return da;
