@@ -38,6 +38,10 @@ More explicit license information at the end of file.
 		#endif
 	#endif
 
+	#ifndef MU_SET_RESULT
+		#define MU_SET_RESULT(res, val) if(res!=MU_NULL_PTR){*res=val;}
+	#endif
+
 	/* C standard library dependencies */
 
 		#if !defined(size_m)
@@ -197,16 +201,12 @@ More explicit license information at the end of file.
 	#endif
 
 	MUDEF muDynamicArray mu_dynamic_array_create(mumaResult* result, size_m type_size, size_m length) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		muDynamicArray da = mu_zero_struct(muDynamicArray);
 
 		if (type_size <= 0) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_INVALID_TYPE_SIZE;
-			}
+			MU_SET_RESULT(result, MUMA_INVALID_TYPE_SIZE)
 			return da;
 		}
 
@@ -221,9 +221,7 @@ More explicit license information at the end of file.
 
 		da.data = mu_malloc(da.type_size * da.allocated_length);
 		if (da.data == 0) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_FAILED_TO_ALLOCATE;
-			}
+			MU_SET_RESULT(result, MUMA_FAILED_TO_ALLOCATE)
 			return da;
 		}
 		mu_memset(da.data, 0, da.type_size * da.allocated_length);
@@ -231,9 +229,7 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF muDynamicArray mu_dynamic_array_destroy(mumaResult* result, muDynamicArray da) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		if (da.data != MU_NULL_PTR) {
 			mu_free(da.data);
@@ -245,21 +241,15 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF muDynamicArray mu_dynamic_array_multiset(mumaResult* result, muDynamicArray da, void* data, size_m count, size_m index) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		if (index >= da.length) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_INVALID_INDEX;
-			}
+			MU_SET_RESULT(result, MUMA_INVALID_INDEX)
 			return da;
 		}
 
 		if (index+count >= da.length+1) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_INVALID_COUNT;
-			}
+			MU_SET_RESULT(result, MUMA_INVALID_COUNT)
 			return da;
 		}
 
@@ -278,14 +268,10 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF void* mu_dynamic_array_get(mumaResult* result, muDynamicArray da, size_m index) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		if (index >= da.length) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_INVALID_INDEX;
-			}
+			MU_SET_RESULT(result, MUMA_INVALID_INDEX)
 			return MU_NULL_PTR;
 		}
 
@@ -294,14 +280,10 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF muDynamicArray mu_dynamic_array_resize(mumaResult* result, muDynamicArray da, size_m length) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		if (da.type_size <= 0) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_INVALID_TYPE_SIZE;
-			}
+			MU_SET_RESULT(result, MUMA_INVALID_TYPE_SIZE)
 			return da;
 		}
 
@@ -315,9 +297,7 @@ More explicit license information at the end of file.
 			da.data = mu_malloc(da.allocated_length * da.type_size);
 
 			if (da.data == 0) {
-				if (result != MU_NULL_PTR) {
-					*result = MUMA_FAILED_TO_ALLOCATE;
-				}
+				MU_SET_RESULT(result, MUMA_FAILED_TO_ALLOCATE)
 				return da;
 			}
 			mu_memset(da.data, 0, da.type_size * da.allocated_length);
@@ -345,9 +325,7 @@ More explicit license information at the end of file.
 			if (new_data == 0) {
 				da.length = old_length;
 				da.allocated_length = old_allocated_length;
-				if (result != MU_NULL_PTR) {
-					*result = MUMA_FAILED_TO_ALLOCATE;
-				}
+				MU_SET_RESULT(result, MUMA_FAILED_TO_ALLOCATE)
 				return da;
 			}
 
@@ -363,14 +341,10 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF muDynamicArray mu_dynamic_array_lshift(mumaResult* result, muDynamicArray da, size_m index, size_m amount) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		if (index >= da.length) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_INVALID_INDEX;
-			}
+			MU_SET_RESULT(result, MUMA_INVALID_INDEX)
 			return da;
 		}
 
@@ -379,9 +353,7 @@ More explicit license information at the end of file.
 		}
 
 		if (amount > index) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_INVALID_SHIFT_AMOUNT;
-			}
+			MU_SET_RESULT(result, MUMA_INVALID_SHIFT_AMOUNT)
 			return da;
 		}
 
@@ -391,9 +363,7 @@ More explicit license information at the end of file.
 		mumaResult res = MUMA_SUCCESS;
 		da = mu_dynamic_array_resize(&res, da, da.length-amount);
 		if (res != MUMA_SUCCESS) {
-			if (result != MU_NULL_PTR) {
-				*result = res;
-			}
+			MU_SET_RESULT(result, res)
 			return da;
 		}
 
@@ -401,14 +371,10 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF muDynamicArray mu_dynamic_array_rshift(mumaResult* result, muDynamicArray da, size_m index, size_m amount) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		if (index >= da.length) {
-			if (result != MU_NULL_PTR) {
-				*result = MUMA_INVALID_INDEX;
-			}
+			MU_SET_RESULT(result, MUMA_INVALID_INDEX)
 			return da;
 		}
 
@@ -419,9 +385,7 @@ More explicit license information at the end of file.
 		mumaResult res = MUMA_SUCCESS;
 		da = mu_dynamic_array_resize(&res, da, da.length+amount);
 		if (res != MUMA_SUCCESS) {
-			if (result != MU_NULL_PTR) {
-				*result = res;
-			}
+			MU_SET_RESULT(result, res)
 			return da;
 		}
 
@@ -433,16 +397,12 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF muDynamicArray mu_dynamic_array_multiinsert(mumaResult* result, muDynamicArray da, void* insert, size_m count, size_m index) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		mumaResult res = MUMA_SUCCESS;
 		da = mu_dynamic_array_rshift(&res, da, index, count);
 		if (res != MUMA_SUCCESS) {
-			if (result != MU_NULL_PTR) {
-				*result = res;
-			}
+			MU_SET_RESULT(result, res)
 			return da;
 		}
 
@@ -466,16 +426,12 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF muDynamicArray mu_dynamic_array_multipush(mumaResult* result, muDynamicArray da, void* push, size_m count) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		mumaResult res = MUMA_SUCCESS;
 		da = mu_dynamic_array_resize(&res, da, da.length+count);
 		if (res != MUMA_SUCCESS) {
-			if (result != MU_NULL_PTR) {
-				*result = res;
-			}
+			MU_SET_RESULT(result, res)
 			return da;
 		}
 
@@ -496,9 +452,7 @@ More explicit license information at the end of file.
 	}
 
 	MUDEF size_m mu_dynamic_array_find(mumaResult* result, muDynamicArray da, void* find) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		char* c = (char*)da.data;
 		char* cf = (char*)find;
@@ -515,16 +469,12 @@ More explicit license information at the end of file.
 			}
 		}
 
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_NOT_FOUND;
-		}
+		MU_SET_RESULT(result, MUMA_NOT_FOUND)
 		return MU_NONE;
 	}
 
 	MUDEF muDynamicArray mu_dynamic_array_find_push(mumaResult* result, muDynamicArray da, void* find, size_m* p_index) {
-		if (result != MU_NULL_PTR) {
-			*result = MUMA_SUCCESS;
-		}
+		MU_SET_RESULT(result, MUMA_SUCCESS)
 
 		mumaResult res = MUMA_SUCCESS;
 		size_m index = mu_dynamic_array_find(&res, da, find);
@@ -538,9 +488,7 @@ More explicit license information at the end of file.
 			if (p_index != MU_NULL_PTR) {
 				*p_index = MU_NONE;
 			}
-			if (result != MU_NULL_PTR) {
-				*result = res;
-			}
+			MU_SET_RESULT(result, res)
 			return da;
 		}
 
@@ -549,9 +497,7 @@ More explicit license information at the end of file.
 			if (p_index != MU_NULL_PTR) {
 				*p_index = MU_NONE;
 			}
-			if (result != MU_NULL_PTR) {
-				*result = res;
-			}
+			MU_SET_RESULT(result, res)
 			return da;
 		}
 
