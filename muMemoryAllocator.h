@@ -30,11 +30,19 @@ More explicit license information at the end of file.
 		#endif
 	#endif
 
-	#ifndef mu_zero_struct
+	#ifndef MU_ZERO_STRUCT
 		#ifdef __cplusplus
-			#define mu_zero_struct(s) {}
+			#define MU_ZERO_STRUCT(s) {}
 		#else
-			#define mu_zero_struct(s) (s){0}
+			#define MU_ZERO_STRUCT(s) (s){0}
+		#endif
+	#endif
+
+	#ifndef MU_ZERO_STRUCT_CONST
+		#ifdef __cplusplus
+			#define MU_ZERO_STRUCT_CONST(s) {}
+		#else
+			#define MU_ZERO_STRUCT_CONST(s) {0}
 		#endif
 	#endif
 
@@ -203,7 +211,7 @@ More explicit license information at the end of file.
 	MUDEF muDynamicArray mu_dynamic_array_create(mumaResult* result, size_m type_size, size_m length) {
 		MU_SET_RESULT(result, MUMA_SUCCESS)
 
-		muDynamicArray da = mu_zero_struct(muDynamicArray);
+		muDynamicArray da = MU_ZERO_STRUCT(muDynamicArray);
 
 		if (type_size <= 0) {
 			MU_SET_RESULT(result, MUMA_INVALID_TYPE_SIZE)
