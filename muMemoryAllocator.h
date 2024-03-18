@@ -8,10 +8,6 @@ More explicit license information at the end of file.
 
 @TODO Prevent "allocation size ping pong", ie allocation size flicking
 between, for example, 3 and 4, causing constant allocation.
-
-@MENTION Functions that modify multiple elements that take in "void* 
-data" expect data to be as long as the array's type size multiplied by
-the amount of elements being modified.
 */
 
 #ifndef MUMA_H
