@@ -17,7 +17,7 @@ muma is licensed under public domain or MIT, whichever you prefer. More informat
 
 muma has a dependency on:
 
-[muUtility v1.0.0](https://github.com/Muukid/muUtility/releases/tag/v1.0.0)
+[muUtility v1.0.0](https://github.com/Muukid/muUtility/tree/v1.0.0)
 
 Note that mu libraries store their dependencies within their files, so you don't need to import these dependencies yourself.
 
