@@ -19,6 +19,8 @@ muma has a dependency on:
 
 [muUtility v1.0.0](https://github.com/Muukid/muUtility/tree/bc7e8838bee07c1a8b495d5c3f04d08554e82b37)
 
+Note that mu libraries store their dependencies within their files, so you don't need to import these dependencies yourself.
+
 # Thread safety
 
 muma has no built-in thread safety features. However, it does provide a hold-release (or HR) array that can have callback functions for whenever an element in an array is being modified, which can be easily used to make a thread safe array. Many mu libraries do this, actually, by combining muma and muMultithreading, using muUtility's `MU_HRARRAY_DEFAULT_FUNC` macro to declare it in virtually one line of code.
