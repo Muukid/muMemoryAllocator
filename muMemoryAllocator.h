@@ -371,7 +371,6 @@ between, for example, 3 and 4, causing constant allocation.
 			MUMA_FAILED_TO_ALLOCATE,
 			MUMA_INVALID_INDEX,
 			MUMA_INVALID_SHIFT_AMOUNT,
-			MUMA_INVALID_COUNT,
 			MUMA_NOT_FOUND
 		)
 
@@ -1088,7 +1087,6 @@ between, for example, 3 and 4, causing constant allocation.
 				case MUMA_FAILED_TO_ALLOCATE: return "MUMA_FAILED_TO_ALLOCATE"; break;
 				case MUMA_INVALID_INDEX: return "MUMA_INVALID_INDEX"; break;
 				case MUMA_INVALID_SHIFT_AMOUNT: return "MUMA_INVALID_SHIFT_AMOUNT"; break;
-				case MUMA_INVALID_COUNT: return "MUMA_INVALID_COUNT"; break;
 				case MUMA_NOT_FOUND: return "MUMA_NOT_FOUND"; break;
 			}
 		}
