@@ -9,6 +9,10 @@ muMemoryAllocator (acrynomized to muma) is a public domain header-only single-fi
 
 More information about the general structure of a mu library is provided at [the mu library information GitHub repository.](https://github.com/Muukid/mu-library-information)
 
+# Demos
+
+Demos that quickly show the gist of the library and how it works are available in the `demos` folder.
+
 # Licensing
 
 muma is licensed under public domain or MIT, whichever you prefer. More information is provided in the accompanying file `license.md` and at the bottom of `muMemoryAllocator.h`.
