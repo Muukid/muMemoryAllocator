@@ -348,8 +348,9 @@ between, for example, 3 and 4, causing constant allocation.
 
 		#endif
 
-		#if !defined(mu_memset) || \
-			!defined(mu_memcpy)
+		#if !defined(mu_memset)  || \
+			!defined(mu_memcpy)  || \
+			!defined(mu_memmove)
 
 			#include <string.h>
 
@@ -359,6 +360,10 @@ between, for example, 3 and 4, causing constant allocation.
 
 			#ifndef mu_memcpy
 				#define mu_memcpy memcpy
+			#endif
+
+			#ifndef mu_memmove
+				#define mu_memmove memmove
 			#endif
 
 		#endif
@@ -500,7 +505,7 @@ between, for example, 3 and 4, causing constant allocation.
 					return s; \
 				} \
 				\
-				mu_memcpy(&s.data[index-amount], &s.data[index], sizeof(type)*(s.length-index)); \
+				mu_memmove(&s.data[index-amount], &s.data[index], sizeof(type)*(s.length-index)); \
 				\
 				mumaResult res = MUMA_SUCCESS; \
 				s = function_name_prefix##resize(&res, s, s.length-amount); \
@@ -531,7 +536,9 @@ between, for example, 3 and 4, causing constant allocation.
 					return s; \
 				} \
 				\
-				mu_memcpy(&s.data[index+amount], &s.data[index], sizeof(type)*(s.length-index)); \
+				/* I have genuinely no idea why it needs to have a -1. It crashes if you don't. */\
+				/* And lshift doesn't need one. Why?? */ \
+				mu_memmove(&s.data[index+amount], &s.data[index], sizeof(type)*((s.length-index)-1)); \
 				mu_memset(&s.data[index], 0, sizeof(type)*(amount)); \
 				\
 				return s; \
@@ -844,7 +851,7 @@ between, for example, 3 and 4, causing constant allocation.
 					} \
 				} \
 				\
-				mu_memcpy(&s->data[index-amount], &s->data[index], sizeof(type)*(s->length-index)); \
+				mu_memmove(&s->data[index-amount], &s->data[index], sizeof(type)*(s->length-index)); \
 				\
 				mumaResult res = MUMA_SUCCESS; \
 				function_name_prefix##inner_resize(&res, s, s->length-amount, MU_FALSE); \
@@ -895,7 +902,7 @@ between, for example, 3 and 4, causing constant allocation.
 					return; \
 				} \
 				\
-				mu_memcpy(&s->data[index+amount], &s->data[index], sizeof(type)*(s->length-index)); \
+				mu_memmove(&s->data[index+amount], &s->data[index], sizeof(type)*((s->length-index)-1); \
 				\
 				if (cd) { \
 					for (size_m i = 0; i < index; i++) { \
