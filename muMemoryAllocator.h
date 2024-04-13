@@ -902,7 +902,7 @@ between, for example, 3 and 4, causing constant allocation.
 					return; \
 				} \
 				\
-				mu_memmove(&s->data[index+amount], &s->data[index], sizeof(type)*((s->length-index)-1); \
+				mu_memmove(&s->data[index+amount], &s->data[index], sizeof(type)*((s->length-index)-1)); \
 				\
 				if (cd) { \
 					for (size_m i = 0; i < index; i++) { \
