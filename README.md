@@ -395,3 +395,5 @@ muma has several C standard library dependencies not provided by its other libra
 `mu_memset`: equivalent to `memset`
 
 `mu_memcpy`: equivalent to `memcpy`
+
+`mu_memmove`: equivalent to `memmove`
