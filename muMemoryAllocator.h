@@ -13,7 +13,7 @@ between, for example, 3 and 4, causing constant allocation.
 #ifndef MUMA_H
 	#define MUMA_H
 	
-	/* muUtility version 1.0.0 header */
+	/* muUtility commit 2b34ba6 header */
 	
 		#if !defined(MU_CHECK_VERSION_MISMATCHING) && defined(MUU_H) && \
 			(MUU_VERSION_MAJOR != 1 || MUU_VERSION_MINOR != 0 || MUU_VERSION_PATCH != 0)
@@ -268,49 +268,6 @@ between, for example, 3 and 4, causing constant allocation.
 						#define MU_UNIX
 					#endif
 				#endif
-
-				#define MU_HRARRAY_DEFAULT_FUNC(name) \
-					muBool name##_comp(name t0, name t1) { \
-						return t0.active == t1.active; \
-					} \
-					\
-					void name##_on_creation(name* p) { \
-						if (p != MU_NULL_PTR) { \
-							MU_LOCK_CREATE(p->lock, p->lock_active) \
-						} \
-					} \
-					void name##_on_destruction(name* p) { \
-						if (p != MU_NULL_PTR) { \
-							MU_LOCK_DESTROY(p->lock, p->lock_active) \
-						} \
-					} \
-					void name##_on_hold(name* p) { \
-						if (p != MU_NULL_PTR) { \
-							MU_LOCK_LOCK(p->lock, p->lock_active) \
-						} \
-					} \
-					void name##_on_release(name* p) { \
-						if (p != MU_NULL_PTR) { \
-							MU_LOCK_UNLOCK(p->lock, p->lock_active) \
-						} \
-					} \
-					\
-					mu_dynamic_hrarray_declaration( \
-						name##_array, name, name##_, name##_comp, \
-						name##_on_creation, name##_on_destruction, name##_on_hold, name##_on_release \
-					)
-
-				#define MU_SAFEFUNC(result, lib_prefix, context, fail_return) \
-					MU_SET_RESULT(result, lib_prefix##SUCCESS) \
-					MU_ASSERT(context != MU_NULL_PTR, result, lib_prefix##NOT_YET_INITIALIZED, fail_return) \
-
-				#define MU_HOLD(result, item, da, context, lib_prefix, fail_return, da_prefix) \
-					MU_ASSERT(item < da.length, result, lib_prefix##INVALID_ID, fail_return) \
-					da_prefix##hold_element(0, &da, item); \
-					MU_ASSERT(da.data[item].active, result, lib_prefix##INVALID_ID, da_prefix##release_element(0, &da, item); fail_return)
-
-				#define MU_RELEASE(da, item, da_prefix) \
-					da_prefix##release_element(0, &da, item);
 
 			#ifdef __cplusplus
 			}
