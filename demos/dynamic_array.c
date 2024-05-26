@@ -5,15 +5,13 @@
 DEMO NAME:          dynamic_array.c
 DEMO WRITTEN BY:    Muukid
 CREATION DATE:      2024-04-13
-LAST UPDATED:       2024-04-13
+LAST UPDATED:       2024-05-26
 
 ============================================================
                         DEMO PURPOSE
 
 This demo shows the basics behind creating, modifying, and
 destroying a normal dynamic array using muma.
-
-============================================================
 
 ============================================================
                         LICENSE INFO
@@ -28,7 +26,7 @@ More explicit license information at the end of file.
 // Include muma
 #define MUMA_NAMES // (for muma_result_get_name)
 #define MUMA_IMPLEMENTATION
-#include <muMemoryAllocator.h>
+#include "muMemoryAllocator.h"
 
 // Include stdio for printing
 #include <stdio.h>
