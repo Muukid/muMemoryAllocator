@@ -12,7 +12,7 @@ between, for example, 3 and 4, causing constant allocation.
 
 /* @DOCBEGIN
 
-# muMemoryAllocator v1.0.0
+# muMemoryAllocator v1.1.0
 
 muMemoryAllocator (acrynomized to muma) is a public domain header-only single-file C library for easy management of dynamic allocation. To use it, download the `muMemoryAllocator.h` file, add it to your include path, and include it like so:
 
@@ -900,8 +900,8 @@ Note that mu libraries store their dependencies within their files, so you don't
 			// @DOCLINE There are three major, minor, and patch macros respectively defined to represent the version of mum, defined as `MUMA_VERSION_MAJOR`, `MUMA_VERSION_MINOR`, and `MUMA_VERSION_PATCH`, following the formatting of `vMAJOR.MINOR.PATCH`.
 
 			#define MUMA_VERSION_MAJOR 1
-			#define MUMA_VERSION_MINOR 0
-			#define MUMA_VERSION_PATCH 1
+			#define MUMA_VERSION_MINOR 1
+			#define MUMA_VERSION_PATCH 0
 
 	// @DOCLINE # Functions
 
