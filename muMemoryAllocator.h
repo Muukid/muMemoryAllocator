@@ -18,7 +18,7 @@ muMemoryAllocator (acrynomized to muma) is a public domain header-only single-fi
 
 ```c
 #define MUMA_IMPLEMENTATION
-#include <muMemoryAllocator.h>
+#include "muMemoryAllocator.h"
 ```
 
 More information about the general structure of a mu library is provided at [the mu library information GitHub repository.](https://github.com/Muukid/mu-library-information)
