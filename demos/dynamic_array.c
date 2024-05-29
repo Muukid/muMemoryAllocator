@@ -5,7 +5,7 @@
 DEMO NAME:          dynamic_array.c
 DEMO WRITTEN BY:    Muukid
 CREATION DATE:      2024-04-13
-LAST UPDATED:       2024-05-26
+LAST UPDATED:       2024-05-29
 
 ============================================================
                         DEMO PURPOSE
@@ -193,14 +193,14 @@ int main(void) {
 			printf("WARNING: float_arr_find returned %s\n", muma_result_get_name(result));
 
 		// Print index (should be 1)
-		if (index != MU_NONE) {
+		if (index != MU_SIZE_MAX) {
 			printf("Index that contains 9.f: %i\n", (int)index);
 		} else {
 			printf("No element is 9.f\n");
 		}
 
 		// Try and find 3.f, which doesn't exist in the array
-		// This should return MU_NONE
+		// This should return MU_SIZE_MAX
 
 		index = float_arr_find(&result, floats, 3.f);
 
@@ -208,8 +208,8 @@ int main(void) {
 		if (result != MUMA_SUCCESS)
 			printf("float_arr_find returned %s, which we expect\n", muma_result_get_name(result));
 
-		// Print index (should be MU_NONE)
-		if (index == MU_NONE) {
+		// Print index (should be MU_SIZE_MAX)
+		if (index == MU_SIZE_MAX) {
 			printf("No element is 3.f\n");
 		} else {
 			printf("Index that contains 3.f: %i\n", (int)index);
@@ -327,4 +327,3 @@ ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ------------------------------------------------------------------------------
 */
-
