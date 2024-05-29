@@ -530,12 +530,12 @@ Note that mu libraries store their dependencies within their files, so you don't
 					size_m length; \
 				}; typedef struct struct_name struct_name; \
 				\
-				/*@DOCBEGIN #### Creation @DOCEND*/ \
-				/*@DOCBEGIN The function `function_name_prefix##create` is used to create a dynamic array, defined below: @DOCEND*/ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##create(mumaResult* result, size_m length) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN Note that `length` being 0 is valid, and nothing will be immediately allocated. @DOCEND */ \
+				/*@DOCBEGIN #### Creation @NEWLINE @DOCEND*/ \
+				/*@DOCBEGIN The function `function_name_prefix##create` is used to create a dynamic array, defined below: @NEWLINE @DOCEND*/ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##create(mumaResult* result, size_m length) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN Note that `length` being 0 is valid, and nothing will be immediately allocated. @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##create(mumaResult* result, size_m length) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
@@ -560,12 +560,12 @@ Note that mu libraries store their dependencies within their files, so you don't
 					return s;\
 				} \
 				\
-				/*@DOCBEGIN #### Destruction @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##destroy` is used to destroy a dynamic array and fully free its contents, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##destroy(mumaResult* result, struct_name s) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN Note that this function is safe to call on an array with nothing allocated (of course, assuming that its members are valid). @DOCEND */ \
+				/*@DOCBEGIN #### Destruction @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##destroy` is used to destroy a dynamic array and fully free its contents, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##destroy(mumaResult* result, struct_name s) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN Note that this function is safe to call on an array with nothing allocated (of course, assuming that its members are valid). @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##destroy(mumaResult* result, struct_name s) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
@@ -579,14 +579,14 @@ Note that mu libraries store their dependencies within their files, so you don't
 					return s; \
 				} \
 				\
-				/*@DOCBEGIN #### Resize @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##resize` is used to resize a dynamic array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##resize(mumaResult* result, struct_name s, size_m length) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN If this function performs correctly, `s.length` will be equal to `length`. @DOCEND */ \
-				/*@DOCBEGIN Note that `length` is allowed to be any value, including being above, below, or equal to the array's length / allocated length, as well as 0 (although, it cannot be guaranteed that this will free memory). @DOCEND */ \
-				/*@DOCBEGIN Note that, in general, this function is not guaranteed to allocate or free any memory, even if the length is changing a significant amount. @DOCEND */ \
+				/*@DOCBEGIN #### Resize @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##resize` is used to resize a dynamic array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##resize(mumaResult* result, struct_name s, size_m length) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN If this function performs correctly, `s.length` will be equal to `length`. @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN Note that `length` is allowed to be any value, including being above, below, or equal to the array's length / allocated length, as well as 0 (although, it cannot be guaranteed that this will free memory). @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN Note that, in general, this function is not guaranteed to allocate or free any memory, even if the length is changing a significant amount. @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##resize(mumaResult* result, struct_name s, size_m length) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
@@ -643,14 +643,14 @@ Note that mu libraries store their dependencies within their files, so you don't
 					return s; \
 				} \
 				\
-				/*@DOCBEGIN #### Left shift @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##lshift` is used to shift a dynamic array's contents left, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##lshift(mumaResult* result, struct_name s, size_m index, size_m amount) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function takes all of the elements of an array starting from `index` and ending at the end of the array, and shifts them left `amount` amount of times. @DOCEND */ \
-				/*@DOCBEGIN If this function performs correctly, `s.length` will be equal to `s.length` minus `amount`. @DOCEND */ \
-				/*@DOCBEGIN Note that this operation can overwrite contents of other elements within the array. @DOCEND */ \
+				/*@DOCBEGIN #### Left shift @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##lshift` is used to shift a dynamic array's contents left, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##lshift(mumaResult* result, struct_name s, size_m index, size_m amount) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function takes all of the elements of an array starting from `index` and ending at the end of the array, and shifts them left `amount` amount of times. @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN If this function performs correctly, `s.length` will be equal to `s.length` minus `amount`. @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN Note that this operation can overwrite contents of other elements within the array. @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##lshift(mumaResult* result, struct_name s, size_m index, size_m amount) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
@@ -680,14 +680,14 @@ Note that mu libraries store their dependencies within their files, so you don't
 					return s; \
 				} \
 				\
-				/*@DOCBEGIN #### Right shift @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##rshift` is used to shift a dynamic array's contents right, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##rshift(mumaResult* result, struct_name s, size_m index, size_m amount) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function takes all of the elements of an array starting from `index` and ending at the end of the array, and shifts them right `amount` amount of times. @DOCEND */ \
-				/*@DOCBEGIN If this function performs correctly, `s.length` will be equal to `s.length` plus `amount`. @DOCEND */ \
-				/*@DOCBEGIN Note that this operation cannot overwrite contents of other elements within the array. @DOCEND */ \
+				/*@DOCBEGIN #### Right shift @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##rshift` is used to shift a dynamic array's contents right, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##rshift(mumaResult* result, struct_name s, size_m index, size_m amount) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function takes all of the elements of an array starting from `index` and ending at the end of the array, and shifts them right `amount` amount of times. @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN If this function performs correctly, `s.length` will be equal to `s.length` plus `amount`. @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN Note that this operation cannot overwrite contents of other elements within the array. @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##rshift(mumaResult* result, struct_name s, size_m index, size_m amount) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
@@ -715,13 +715,13 @@ Note that mu libraries store their dependencies within their files, so you don't
 					return s; \
 				} \
 				\
-				/*@DOCBEGIN #### Multi-insert @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##multiinsert` is used to insert multiple elements into a dynamic array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##multiinsert(mumaResult* result, struct_name s, size_m index, type* insert, size_m count) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function takes `insert` (which should have `count` amount of `type` elements) and inserts it at index `index`. @DOCEND */ \
-				/*@DOCBEGIN If this function performs correctly, `s.length` will be equal to `s.length` plus `count`, and `s.data[index+n]` will be equal to `insert[0+n]` while `n` is less than `count` (ie, `s.data[index+0] == insert[0]`). @DOCEND */ \
+				/*@DOCBEGIN #### Multi-insert @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##multiinsert` is used to insert multiple elements into a dynamic array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##multiinsert(mumaResult* result, struct_name s, size_m index, type* insert, size_m count) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function takes `insert` (which should have `count` amount of `type` elements) and inserts it at index `index`. @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN If this function performs correctly, `s.length` will be equal to `s.length` plus `count`, and `s.data[index+n]` will be equal to `insert[0+n]` while `n` is less than `count` (ie, `s.data[index+0] == insert[0]`). @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##multiinsert(mumaResult* result, struct_name s, size_m index, type* insert, size_m count) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
@@ -736,55 +736,55 @@ Note that mu libraries store their dependencies within their files, so you don't
 					return s; \
 				} \
 				\
-				/*@DOCBEGIN #### Insert @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##insert` is used to insert a single element into a dynamic array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##insert(mumaResult* result, struct_name s, size_m index, type insert) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function just returns `function_name_prefix##multiinsert` with the following parameters: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN function_name_prefix##multiinsert(result, s, index, &insert, 1) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
+				/*@DOCBEGIN #### Insert @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##insert` is used to insert a single element into a dynamic array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##insert(mumaResult* result, struct_name s, size_m index, type insert) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function just returns `function_name_prefix##multiinsert` with the following parameters: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN function_name_prefix##multiinsert(result, s, index, &insert, 1) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##insert(mumaResult* result, struct_name s, size_m index, type insert) { \
 					return function_name_prefix##multiinsert(result, s, index, &insert, 1); \
 				} \
 				\
-				/*@DOCBEGIN #### Multi-erase @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##multierase` is used to erase multiple elements from an array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##multierase(mumaResult* result, struct_name s, size_m index, size_m count) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function just returns `function_name_prefix##lshift` with the following parameters: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN function_name_prefix##lshift(result, s, index+count, count) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
+				/*@DOCBEGIN #### Multi-erase @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##multierase` is used to erase multiple elements from an array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##multierase(mumaResult* result, struct_name s, size_m index, size_m count) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function just returns `function_name_prefix##lshift` with the following parameters: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN function_name_prefix##lshift(result, s, index+count, count) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##multierase(mumaResult* result, struct_name s, size_m index, size_m count) { \
 					return function_name_prefix##lshift(result, s, index+count, count); \
 				} \
 				\
-				/*@DOCBEGIN #### Erase @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##erase` is used to erase an element from an array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##erase(mumaResult* result, struct_name s, size_m index) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function just returns `function_name_prefix##multierase` with the following parameters: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN function_name_prefix##multierase(result, s, index, 1) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
+				/*@DOCBEGIN #### Erase @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##erase` is used to erase an element from an array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##erase(mumaResult* result, struct_name s, size_m index) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function just returns `function_name_prefix##multierase` with the following parameters: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN function_name_prefix##multierase(result, s, index, 1) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##erase(mumaResult* result, struct_name s, size_m index) { \
 					return function_name_prefix##multierase(result, s, index, 1); \
 				} \
-				/*@DOCBEGIN #### Clear @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##clear` is used to clear all the elements from an array. It is identical to `function_name_prefix##destroy`. @DOCEND */ \
+				/*@DOCBEGIN #### Clear @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##clear` is used to clear all the elements from an array. It is identical to `function_name_prefix##destroy`. @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##clear(mumaResult* result, struct_name s) { \
 					return function_name_prefix##destroy(result, s); \
 				} \
 				\
-				/*@DOCBEGIN #### Multi-push @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##multipush` is used to push multiple elements on top of an array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##multipush(mumaResult* result, struct_name s, type* push, size_m count) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
+				/*@DOCBEGIN #### Multi-push @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##multipush` is used to push multiple elements on top of an array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##multipush(mumaResult* result, struct_name s, type* push, size_m count) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##multipush(mumaResult* result, struct_name s, type* push, size_m count) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
@@ -799,49 +799,49 @@ Note that mu libraries store their dependencies within their files, so you don't
 					return s; \
 				} \
 				\
-				/*@DOCBEGIN #### Push @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##push` is used to push an element on top of an array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##push(mumaResult* result, struct_name s, type push) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function just returns `function_name_prefix##multipush` with the following parameters: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN function_name_prefix##multipush(result, s, &push, 1) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
+				/*@DOCBEGIN #### Push @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##push` is used to push an element on top of an array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##push(mumaResult* result, struct_name s, type push) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function just returns `function_name_prefix##multipush` with the following parameters: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN function_name_prefix##multipush(result, s, &push, 1) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##push(mumaResult* result, struct_name s, type push) { \
 					return function_name_prefix##multipush(result, s, &push, 1); \
 				} \
 				\
-				/*@DOCBEGIN #### Multi-pop @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##multipop` is used to pop multiple elements from the top of an array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##multipop(mumaResult* result, struct_name s, size_m count) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
+				/*@DOCBEGIN #### Multi-pop @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##multipop` is used to pop multiple elements from the top of an array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##multipop(mumaResult* result, struct_name s, size_m count) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##multipop(mumaResult* result, struct_name s, size_m count) { \
 					return function_name_prefix##resize(result, s, s.length-count); \
 				} \
 				\
-				/*@DOCBEGIN #### Pop @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##pop` is used to pop an element from the top of an array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##pop(mumaResult* result, struct_name s) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function just returns `function_name_prefix##multipop` with the following parameters: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN function_name_prefix##multipop(result, s, 1) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
+				/*@DOCBEGIN #### Pop @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##pop` is used to pop an element from the top of an array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##pop(mumaResult* result, struct_name s) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function just returns `function_name_prefix##multipop` with the following parameters: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN function_name_prefix##multipop(result, s, 1) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##pop(mumaResult* result, struct_name s) { \
 					return function_name_prefix##multipop(result, s, 1); \
 				} \
 				\
-				/*@DOCBEGIN #### Find @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##find` is used to find a certain element in an array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN size_m function_name_prefix##find(mumaResult* result, struct_name s, type find) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function scans from index 0 up until the end of the array and uses `type_comparison_func` to decide if `find` equals the element at the given index. @DOCEND */ \
-				/*@DOCBEGIN If a matching element is found, its index is returned. @DOCEND */ \
-				/*@DOCBEGIN If no matching element is found, `MU_SIZE_MAX` is returned. @DOCEND */ \
+				/*@DOCBEGIN #### Find @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##find` is used to find a certain element in an array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN size_m function_name_prefix##find(mumaResult* result, struct_name s, type find) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function scans from index 0 up until the end of the array and uses `type_comparison_func` to decide if `find` equals the element at the given index. @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN If a matching element is found, its index is returned. @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN If no matching element is found, `MU_SIZE_MAX` is returned. @NEWLINE @DOCEND */ \
 				size_m function_name_prefix##find(mumaResult* result, struct_name s, type find) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
@@ -855,12 +855,12 @@ Note that mu libraries store their dependencies within their files, so you don't
 					return MU_SIZE_MAX; \
 				} \
 				\
-				/*@DOCBEGIN #### Find-push @DOCEND */ \
-				/*@DOCBEGIN The function `function_name_prefix##find_push` is used to find a certain element in an array and, if not found, push it onto the array, defined below: @DOCEND */ \
-				/*@DOCBEGIN ```c @DOCEND */ \
-				/*@DOCBEGIN struct_name function_name_prefix##find_push(mumaResult* result, struct_name s, type find, size_m* p_index) @DOCEND */ \
-				/*@DOCBEGIN ``` @DOCEND */ \
-				/*@DOCBEGIN This function tries to find `find` in the given array `s` using `function_name_prefix##find` and, if not found, pushes `find` onto the array. In either case, if successful and `p_index` isn't 0, `p_index` is dereferenced and set to the index that contains `find`. @DOCEND */ \
+				/*@DOCBEGIN #### Find-push @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN The function `function_name_prefix##find_push` is used to find a certain element in an array and, if not found, push it onto the array, defined below: @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ```c @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN struct_name function_name_prefix##find_push(mumaResult* result, struct_name s, type find, size_m* p_index) @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN ``` @NEWLINE @DOCEND */ \
+				/*@DOCBEGIN This function tries to find `find` in the given array `s` using `function_name_prefix##find` and, if not found, pushes `find` onto the array. In either case, if successful and `p_index` isn't 0, `p_index` is dereferenced and set to the index that contains `find`. @NEWLINE @DOCEND */ \
 				struct_name function_name_prefix##find_push(mumaResult* result, struct_name s, type find, size_m* p_index) { \
 					MU_SET_RESULT(result, MUMA_SUCCESS) \
 					\
